@@ -15,7 +15,7 @@ class DrawGameMap
 public:
 	DrawGameMap(void);
 	~DrawGameMap(void);
-	void drawMap(int map,Player &player,std::list<Monster> &monsters,Animations &animations,Fl_Window &window);
+	void drawMap(int map,Player &player,std::list<Monster> &monsters,Animations &animations,Fl_Window &window,int &gameState);
 	void moveMonsters(std::list<Monster> &monsters);
 	void killMonsters(std::list<Monster> &monsters);
 	void isGameOver(int &gameState);

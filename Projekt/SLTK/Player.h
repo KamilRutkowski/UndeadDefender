@@ -6,5 +6,7 @@ public:
 	~Player(void);
 	int getPosition();
 	int getAnimationFrame();
+	void setPosition(int nPositionX);
+	bool isAttack();
 };
 
