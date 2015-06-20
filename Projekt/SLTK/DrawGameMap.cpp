@@ -28,18 +28,27 @@ void DrawGameMap::drawMap(int map, Player &player, std::list<Monster> &monsters,
 		gameState = 0;
 	}
 	player.setPosition(Fl::event_x_root());
-	//Erasing monster from list if attacked
-	if (player.isAttack())
+	//Going for all monsters
+	for (it = monsters.begin++; it != monsters.end(); it++)
 	{
-		for (it = monsters.begin++; it != monsters.end(); it++)
+		//Erasing monster from list if attacked
+		if (player.isAttack())
 		{
 			if ((*it->getMonsterPosition.Y > 600) && (*it->getMonsterPosition.Y < 650))
 			{
 				if (((player.getPosition() - 5) < *it->getMonsterPosition.X) && ((player.getPosition() + 5) > *it->getMonsterPosition.X))
 				{
-					it=monsters.erase(it);
+					it = monsters.erase(it);
+					break;
 				}
 			}
+		}
+		//Monster attacked the base
+		if (*it->getMonsterPosition.Y > 650)
+		{
+			it = monsters.erase(it);
+			player.lowerHP();
+			break;
 		}
 	}
 }
