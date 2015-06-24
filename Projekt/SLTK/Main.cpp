@@ -8,4 +8,5 @@
 int main()
 {
 	//CZY DZIA£A?
+	//Halo, chyba dziala
 }
