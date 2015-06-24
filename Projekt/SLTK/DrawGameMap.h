@@ -16,9 +16,8 @@ public:
 	DrawGameMap(void);
 	~DrawGameMap(void);
 	void drawMap(int map,Player &player,std::list<Monster> &monsters,Animations &animations,Fl_Window &window,int &gameState);
-	void moveMonsters(std::list<Monster> &monsters);
-	void killMonsters(std::list<Monster> &monsters);
+	void moveMonsters(std::list<Monster>::iterator start, std::list<Monster>::iterator end);
 	void isGameOver(int &gameState);
 private:
-	std::list<int> monstersToKill;
+	bool isGameOver;
 };

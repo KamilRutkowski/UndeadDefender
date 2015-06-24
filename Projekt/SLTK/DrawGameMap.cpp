@@ -2,7 +2,7 @@
 
 DrawGameMap::DrawGameMap(void)
 {
-
+	isGameOver = false;
 }
 
 
@@ -48,7 +48,20 @@ void DrawGameMap::drawMap(int map, Player &player, std::list<Monster> &monsters,
 		{
 			it = monsters.erase(it);
 			player.lowerHP();
+			if (player.getHP() < 1)
+			{
+				isGameOver = true;
+			}
 			break;
 		}
+	}
+	moveMonsters(monsters.begin(),monsters.end());
+}
+
+void moveMonsters(std::list<Monster>::iterator start, std::list<Monster>::iterator end)
+{
+	for (; start != end; start++)
+	{
+		start->moveMonster();
 	}
 }
