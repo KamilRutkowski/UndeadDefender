@@ -18,12 +18,11 @@ class Animations
 {
 public:
 	vector<vector<Fl_PNG_Image>> vec;
-	int frames;
 
 public:
 	Animations(void);
 	~Animations(void);
 	Fl_PNG_Image  getFrame(int animatedObjectType, int frame);
 	int loadFrames(string name, int numberOfFrames);
-	int howManyFrames();
+	int howManyFrames(int);
 };

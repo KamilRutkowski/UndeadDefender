@@ -13,5 +13,6 @@ public:
 public:
 	int whichMap();
 	bool whichGender();
+	void drawOptions();
 
 };
