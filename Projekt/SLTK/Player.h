@@ -8,5 +8,7 @@ public:
 	int getAnimationFrame();
 	void setPosition(int nPositionX);
 	bool isAttack();
+	void lowerHP();
+	int getHP();
 };
 

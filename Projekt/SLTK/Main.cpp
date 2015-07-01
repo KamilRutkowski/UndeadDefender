@@ -11,3 +11,10 @@ int main()
 	//Halo, chyba dziala
 	//Jakie to piękne
 }
+
+/*Tutaj dodawajcie jakieś "zlecenia na funkcje":
+
+W klasie Animations funkcja howManyFrames(int) - zwraca, ile klatek ma animacja danego stworka (int)
+W klasie Player funkcja setAttack(bool) - ustawia atak na prawda lub fałsz (zwracany potem w isAttack();
+
+*/
