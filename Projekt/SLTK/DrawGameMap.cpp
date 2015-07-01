@@ -4,16 +4,22 @@ DrawGameMap::DrawGameMap(void)
 {
 	isGameOver = false;
 	actualTime = clock() / CLOCKS_PER_SEC;
+	HP = new Fl_Box(400, 700, 50, 25);
 }
 
 
 DrawGameMap::~DrawGameMap(void)
 {
-
+	delete(HP);
 }
 
 void DrawGameMap::drawMap(int map, Player &player, std::list<Monster> &monsters, Animations &animations, Fl_Window &window, int &gameState)
 {
+	//Setting actual time if it was NULL
+	if (!actualTime)
+	{
+		actualTime = clock() / CLOCKS_PER_SEC;
+	}
 	//Drawing game map
 	animations.getFrame(0,map).draw(0,0);
 	//Drawing player
@@ -24,10 +30,20 @@ void DrawGameMap::drawMap(int map, Player &player, std::list<Monster> &monsters,
 	{
 		animations.getFrame(it->getMonsterType(),it->getMonsterFrame()).draw(*it->getMonsterPosition.X,*it->getMonsterPosition.Y);
 	}
+	//Drawing HP
+	Fl_Color tmp = fl_color();
+	fl_color(255,0,0);
+	fl_rect(175, 700, 500, 25, fl_color());
+	fl_color(0, 255, 0);
+	fl_rect(175, 700, 5*player.getHP(), 25, fl_color());
+	fl_color(tmp);
+	HP->labelcolor(FL_BLACK);
+	std::string currentHp =std::to_string(player.getHP())+"/100";
+	HP->label(currentHp.c_str());
 	// Going to main menu if Esc was pressed
 	if (Fl::event_key(FL_Escape))
 	{
-		gameState = 0;
+		reset(player, monsters, gameState);
 		return;
 	}
 	//Setting player attack if left mouse button was pressed
@@ -35,6 +51,7 @@ void DrawGameMap::drawMap(int map, Player &player, std::list<Monster> &monsters,
 	{
 		player.setAttack(true);
 	}
+	//Player is where mouse cursor is
 	player.setPosition(Fl::event_x_root());
 	//Going for all monsters
 	for (it = monsters.begin++; it != monsters.end(); it++)
@@ -51,14 +68,15 @@ void DrawGameMap::drawMap(int map, Player &player, std::list<Monster> &monsters,
 				}
 			}
 		}
-		//Monster attacked the base
+		//Monster attacked the base?
 		if (*it->getMonsterPosition.Y > 650)
 		{
 			it = monsters.erase(it);
 			player.lowerHP();
+			//Player killed?
 			if (player.getHP() < 1)
 			{
-				isGameOver = true;
+				reset(player, monsters, gameState);
 			}
 			break;
 		}
@@ -91,4 +109,13 @@ int DrawGameMap::dTime()
 void DrawGameMap::actualizeTime()
 {
 	actualTime = (clock() / CLOCKS_PER_SEC);
+}
+
+void DrawGameMap::reset(Player &player, std::list<Monster> &monsters, int &gameState)
+{
+	player.reset();
+	monsters.clear();
+	gameState = 0;
+	isGameOver = false;
+	actualTime = NULL;
 }
