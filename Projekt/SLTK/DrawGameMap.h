@@ -12,8 +12,7 @@ class DrawGameMap
 {
 public:
 	DrawGameMap(void);
-	~DrawGameMap(void);
-	void drawMap(int map, Player &player, std::list<Monster> &monsters, Animations &animations, Options &options, int &gameState);
+	int drawMap(int map, Player &player, std::list<Monster> &monsters, Animations &animations, Options &options, int &gameState, Fl_Double_Window &window);
 	void isGameOver(int &gameState);
 private:
 	bool GameOver;

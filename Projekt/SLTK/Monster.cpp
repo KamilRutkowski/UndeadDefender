@@ -10,11 +10,6 @@ Monster::Monster(Animations &animations)
 	numberOfFrames = animations.howManyFrames(monsterType);
 }
 
-Monster::~Monster(void)
-{
-	
-}
-
 int Monster::getMonsterType()
 {
 	return monsterType;

@@ -11,11 +11,10 @@ bool Options::whichGender()
 	return ChooseGender;
 }
 
-void Options::drawOptions()
+int Options::drawOptions(int &gameMode, Fl_Double_Window &window)
 {
-	Fl_Window options(400, 500, "Options");
 	Fl_Color ooze_green = fl_rgb_color(255, 105, 105);
-	options.color(ooze_green);
+	window.color(ooze_green);
 
 	Fl_Box logo(150, 50, 50, 50, "Options");
 	logo.labelsize(50);
@@ -34,10 +33,6 @@ void Options::drawOptions()
 			{ 0 }
 	};
 
-	Fl_Choice c(80, 100, 200, 25, "Wybierz: ");
-	c.menu(choices);
-	c.when(FL_WHEN_RELEASE | FL_WHEN_NOT_CHANGED);
-
 	Fl_Round_Button fbutton(200, 120, 80, 50, "Female");
 	Fl_Round_Button mbutton(280, 120, 80, 50, "Male");
 	fbutton.type(FL_RADIO_BUTTON);
@@ -51,6 +46,17 @@ void Options::drawOptions()
 	maps.labelfont(FL_BOLD);
 	maps.menu(choices);
 	maps.when(FL_WHEN_RELEASE | FL_WHEN_NOT_CHANGED);
+
+	Fl_Button exit(30, 470, 646, 100, "EXIT");
+	exit.labelsize(50);
+	exit.labelfont(FL_BOLD);
+	exit.labelcolor(FL_WHITE);
+	exit.box(FL_UP_BOX);
+	exit.callback(exitToMenu, this);
+	gameMode = gamemode;
+	window.end();
+	window.show();
+	return Fl::run();
 }
 
 void Options::wyb_cb0(Fl_Widget*, void* v)
@@ -91,4 +97,15 @@ void Options::setGenderFemale(Fl_Widget*, void* v)
 void Options::setGender(bool gender)
 {
 	ChooseGender = gender;
+}
+
+void Options::exitToMenu(Fl_Widget* widget, void*p)
+{
+	Options* T = (Options*)p;
+	T->exitToMenu2((Options*)p);
+}
+
+void Options::exitToMenu2(Options*)
+{
+	gamemode = 0;
 }

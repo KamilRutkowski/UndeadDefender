@@ -10,17 +10,18 @@ int main()
 	Animations animations;
 	DrawGameMap gameMap;
 	Menu menu;
-	int gameState = 0;
-	Fl_Window window(750, 800, "UNDEAD DEFENDER");
+	bool firstPass = true;
+	int gameState = 2;
+	Fl_Double_Window window(750, 800, "UNDEAD DEFENDER");
 	//Loading frames
-	animations.loadFrames("img/map/bg", 3);
-	animations.loadFrames("img/male_player/male", 2);
-	animations.loadFrames("img/female_player/female", 2);
-	animations.loadFrames("img/blob/blob",2);
-	animations.loadFrames("img/ghost/ghost", 4);
-	animations.loadFrames("img/red_knight/red_knight", 4);
-	animations.loadFrames("img/toxic_blob/toxic_blob", 2); 
-	animations.loadFrames("img/zombie/zombie", 4);
+	animations.loadFrames("../img/map/bg", 3);
+	animations.loadFrames("../img/male_player/male", 2);
+	animations.loadFrames("../img/female_player/female", 2);
+	animations.loadFrames("../img/blob/blob",2);
+	animations.loadFrames("../img/ghost/ghost", 4);
+	animations.loadFrames("../img/red_knight/red_knight", 4);
+	animations.loadFrames("../img/toxic_blob/toxic_blob", 2); 
+	animations.loadFrames("../img/zombie/zombie", 4);
 	//Main program loop
 	while (1)
 	{
@@ -28,18 +29,15 @@ int main()
 		switch (gameState)
 		{
 		case 0:
-			menu.createMenu(gameState);
+			menu.createMenu(gameState,window);
 			break;
 		case 1:
-			gameMap.drawMap(options.whichMap(), player, monsters, animations, options, gameState);
+			gameMap.drawMap(options.whichMap(), player, monsters, animations, options, gameState, window);
 			break;
 		case 2:
-			//options.drawOptions(gameState);
+			options.drawOptions(gameState,window);
 			break;
 		}
-		if (gameState==3) { break; }
-		window.end();
-		window.redraw();
+		if (gameState == 3) { return 0; }
 	}
-	return 0;
 }

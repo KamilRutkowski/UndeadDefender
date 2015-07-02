@@ -3,17 +3,11 @@
 DrawGameMap::DrawGameMap(void)
 {
 	GameOver = false;
-	actualTime = clock() / CLOCKS_PER_SEC;
+	actualTime = NULL;
 	
 }
 
-
-DrawGameMap::~DrawGameMap(void)
-{
-
-}
-
-void DrawGameMap::drawMap(int map, Player &player, std::list<Monster> &monsters, Animations &animations, Options &options, int &gameState)
+int DrawGameMap::drawMap(int map, Player &player, std::list<Monster> &monsters, Animations &animations, Options &options, int &gameState, Fl_Double_Window &window)
 {
 	//Setting actual time if it was NULL
 	if (!actualTime)
@@ -26,19 +20,19 @@ void DrawGameMap::drawMap(int map, Player &player, std::list<Monster> &monsters,
 		if (Fl::event_key(FL_Escape))
 		{
 			reset(player, monsters, gameState);
-			return;
+			return 0;
 		}
-		return;
+		return 0;
 	}
 	//Drawing game map
-	animations.getFrame(0, map).draw(0, 0);
+	animations.getFrame(0, map)->draw(0, 0);
 	//Drawing player
-	animations.getFrame(1 + options.whichGender(), player.getAnimationFrame()).draw(player.getPosition(), 650);
+	animations.getFrame(1 + options.whichGender(), player.getAnimationFrame())->draw(player.getPosition(), 650);
 	//Drawing monsters
 	std::list<Monster>::iterator it;
 	for (it = monsters.begin(); it != monsters.end(); it++)
 	{
-		animations.getFrame(it->getMonsterType(), it->getMonsterFrame()).draw(it->getMonsterPositionX(), it->getMonsterPositionY());
+		animations.getFrame(it->getMonsterType(), it->getMonsterFrame())->draw(it->getMonsterPositionX(), it->getMonsterPositionY());
 	}
 	//Drawing HP
 	Fl_Box HP(375, 700, 100, 25);
@@ -57,7 +51,7 @@ void DrawGameMap::drawMap(int map, Player &player, std::list<Monster> &monsters,
 	if (Fl::event_key(FL_Escape))
 	{
 		reset(player, monsters, gameState);
-		return;
+		return 0;
 	}
 	//Setting player attack if left mouse button was pressed
 	if (FL_LEFT_MOUSE == Fl::event_button())
@@ -105,6 +99,9 @@ void DrawGameMap::drawMap(int map, Player &player, std::list<Monster> &monsters,
 	}
 	//Setting player attack back to false
 	player.setAttack(false);
+	window.end();
+	window.show();
+	return Fl::run();
 }
 
 void DrawGameMap::moveMonsters(std::list<Monster>::iterator start, std::list<Monster>::iterator end)

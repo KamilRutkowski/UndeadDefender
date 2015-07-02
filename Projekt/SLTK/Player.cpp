@@ -60,7 +60,3 @@ void Player::addPoint()
 {
 	points +=1;
 }
-
-Player::~Player(void)
-{
-}

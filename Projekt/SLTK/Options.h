@@ -4,6 +4,7 @@
 #include <FL/Fl_Check_Button.H>
 #include <FL/Fl_Round_Button.H>
 #include <FL/Fl_Choice.H>
+#include <FL/Fl_Double_Window.H>
 
 
 class Options
@@ -18,12 +19,13 @@ private:
 	static void setGenderMale(Fl_Widget*, void* v);
 	static void setGenderFemale(Fl_Widget*, void* v);
 	void setGender(bool gender);
+	static void exitToMenu(Fl_Widget* widget, void* p);
+	void exitToMenu2(Options*);
+	int gamemode=2;
 
 public:
-	Options(void);
-	~Options(void);
 	int whichMap();
 	bool whichGender();
-	void drawOptions();
+	int drawOptions(int &gameMode, Fl_Double_Window &window);
 };
 

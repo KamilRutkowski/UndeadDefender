@@ -4,15 +4,14 @@
 #include <FL/Fl_Check_Button.H>
 #include <FL/Fl_Choice.H>
 #include <FL/Fl_Button.H>
+#include <FL/Fl_Double_Window.H>
 #include <FL/Fl_Window.H>
 #include <string>
 
 class Menu
 {
 public:
-	Menu(void);
-	~Menu(void);
-	void createMenu(int &gameMode);
+	int createMenu(int &gameMode, Fl_Double_Window &window);
 	static void playGame(Fl_Widget* widget, void*p);
 	static void showOptions(Fl_Widget* widget, void* p);
 	static void exitGame(Fl_Widget* widget, void* p);
@@ -22,5 +21,4 @@ public:
 	void exitGame2(Menu*);
 private:
 	int gamemode;
-	Fl_Button* start;
 };

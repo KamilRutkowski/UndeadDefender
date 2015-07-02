@@ -1,22 +1,17 @@
 #include "Menu.h"
 
-Menu::Menu()
-{
-	
-}
-
-void Menu::createMenu(int &gameMode)
+int Menu::createMenu(int &gameMode, Fl_Double_Window &window)
 {	
 	Fl_Box logo(35, 30, 646, 104, "UNDEAD DEFENDER");
 	logo.labelsize( 65 );
 	logo.labelfont( FL_BOLD );
 	logo.labeltype( FL_SHADOW_LABEL );	Fl_Color bloody_red = fl_rgb_color(190, 7, 7);	logo.labelcolor(bloody_red);	
 	
-	Fl_Button start( 30, 140, 646, 100, "START");
-	start.labelsize( 50 );
-	start.labelfont( FL_BOLD );
+	Fl_Button start(30, 140, 646, 100, "START");
+	start.labelsize(50);
+	start.labelfont(FL_BOLD);
 	start.labelcolor(FL_WHITE);
-	start.box( FL_UP_BOX );
+	start.box(FL_UP_BOX);
 	start.callback(playGame, this);
 
 	Fl_Button options(30, 360, 646, 100, "OPTIONS");
@@ -33,6 +28,9 @@ void Menu::createMenu(int &gameMode)
 	exit.box( FL_UP_BOX );
 	exit.callback(exitGame, this);
 	gameMode = gamemode;
+	window.end();
+	window.show();
+	return Fl::run();
 }
 
 void Menu::playGame(Fl_Widget* widget, void*p)

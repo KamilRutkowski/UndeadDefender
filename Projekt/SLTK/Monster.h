@@ -14,7 +14,6 @@ class Monster
 {
 public:
 	Monster(Animations &animations);
-	~Monster(void);
 	int getMonsterType();
 	int getMonsterFrame();
 	int getMonsterPositionX();
