@@ -16,6 +16,7 @@ public:
 	void addPoint();
 
 private:
+	
 	int HP;
 	int positionX;
 	int animationFrame;

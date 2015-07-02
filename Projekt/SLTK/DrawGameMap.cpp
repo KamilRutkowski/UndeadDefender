@@ -4,42 +4,56 @@ DrawGameMap::DrawGameMap(void)
 {
 	isGameOver = false;
 	actualTime = clock() / CLOCKS_PER_SEC;
-	HP = new Fl_Box(400, 700, 50, 25);
+	HP = new Fl_Box(375, 700, 100, 25);
+	Points = new Fl_Box(25, 700, 100, 25);
+	points = 0;
 }
 
 
 DrawGameMap::~DrawGameMap(void)
 {
 	delete(HP);
+	delete(Points);
 }
 
-void DrawGameMap::drawMap(int map, Player &player, std::list<Monster> &monsters, Animations &animations, Fl_Window &window, int &gameState)
+void DrawGameMap::drawMap(int map, Player &player, std::list<Monster> &monsters, Animations &animations, Options &options, int &gameState)
 {
 	//Setting actual time if it was NULL
 	if (!actualTime)
 	{
 		actualTime = clock() / CLOCKS_PER_SEC;
 	}
+	//Waiting for ESC after losing
+	if (isGameOver)
+	{
+		if (Fl::event_key(FL_Escape))
+		{
+			reset(player, monsters, gameState);
+			return;
+		}
+		return;
+	}
 	//Drawing game map
-	animations.getFrame(0,map).draw(0,0);
+	animations.getFrame(0, map).draw(0, 0);
 	//Drawing player
-	animations.getFrame(1,player.getAnimationFrame()).draw(player.getPosition(),650);
+	animations.getFrame(1 + options.whichGender(), player.getAnimationFrame()).draw(player.getPosition(), 650);
 	//Drawing monsters
 	std::list<Monster>::iterator it;
-	for(it=monsters.begin++;it!=monsters.end();it++)
+	for (it = monsters.begin++; it != monsters.end(); it++)
 	{
-		animations.getFrame(it->getMonsterType(),it->getMonsterFrame()).draw(*it->getMonsterPosition.X,*it->getMonsterPosition.Y);
+		animations.getFrame(it->getMonsterType(), it->getMonsterFrame()).draw(*it->getMonsterPosition.X, *it->getMonsterPosition.Y);
 	}
 	//Drawing HP
 	Fl_Color tmp = fl_color();
-	fl_color(255,0,0);
+	fl_color(255, 0, 0);
 	fl_rect(175, 700, 500, 25, fl_color());
 	fl_color(0, 255, 0);
-	fl_rect(175, 700, 5*player.getHP(), 25, fl_color());
+	fl_rect(175, 700, 5 * player.getHP(), 25, fl_color());
 	fl_color(tmp);
 	HP->labelcolor(FL_BLACK);
-	std::string currentHp =std::to_string(player.getHP())+"/100";
-	HP->label(currentHp.c_str());
+	HP->label((std::to_string(player.getHP()) + "/100").c_str());
+	Points->labelcolor(FL_BLACK);
+	Points->label((std::string("Points: ") + std::to_string(points/*player.getPoints()*/)).c_str());
 	// Going to main menu if Esc was pressed
 	if (Fl::event_key(FL_Escape))
 	{
@@ -64,6 +78,8 @@ void DrawGameMap::drawMap(int map, Player &player, std::list<Monster> &monsters,
 				if (((player.getPosition() - 5) < *it->getMonsterPosition.X) && ((player.getPosition() + 5) > *it->getMonsterPosition.X))
 				{
 					it = monsters.erase(it);
+					//player.addPoint();
+					points += 1;
 					continue;
 				}
 			}
@@ -76,13 +92,13 @@ void DrawGameMap::drawMap(int map, Player &player, std::list<Monster> &monsters,
 			//Player killed?
 			if (player.getHP() < 1)
 			{
-				reset(player, monsters, gameState);
+				isGameOver = true;
 			}
 			break;
 		}
 	}
 	//Moving monsters down
-	moveMonsters(monsters.begin(),monsters.end());
+	moveMonsters(monsters.begin(), monsters.end());
 	//Creating new monster if dTime is higher than spawn time value
 	if (dTime() > SPAWN_TIME)
 	{
@@ -113,7 +129,7 @@ void DrawGameMap::actualizeTime()
 
 void DrawGameMap::reset(Player &player, std::list<Monster> &monsters, int &gameState)
 {
-	player.reset();
+	//player.reset();
 	monsters.clear();
 	gameState = 0;
 	isGameOver = false;
