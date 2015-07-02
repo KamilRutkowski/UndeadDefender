@@ -1,7 +1,5 @@
-﻿#include "Animations.h"
-#include "DrawGameMap.h"
+﻿#include "DrawGameMap.h"
 #include "Monster.h"
-#include "Options.h"
 #include "Menu.h"
 
 int main()
@@ -36,10 +34,10 @@ int main()
 			gameMap.drawMap(options.whichMap(), player, monsters, animations, options, gameState);
 			break;
 		case 2:
-			options.drawOptions(gameState);
+			//options.drawOptions(gameState);
 			break;
 		}
-		if (menu.exit()) { break; }
+		if (gameState==3) { break; }
 		window.end();
 		window.redraw();
 	}

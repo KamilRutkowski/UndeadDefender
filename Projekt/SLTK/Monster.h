@@ -1,7 +1,5 @@
 #pragma once
 
-#include <FL/Fl.H>
-#include <FL/Fl_PNG_Image.H>
 #include <cstdlib>
 #include <ctime>
 #include "Animations.h"
@@ -19,19 +17,14 @@ public:
 	~Monster(void);
 	int getMonsterType();
 	int getMonsterFrame();
-	Position getMonsterPosition();
+	int getMonsterPositionX();
+	int getMonsterPositionY();
 	void moveMonster();
 
 private:
 	int numberOfFrames;
 	int monsterType;
-	Position posit;
+	int positionX;
+	int positionY;
 	int animationState;
-};
-
-class Position
-{
-public:
-	int x;
-	int y;
 };

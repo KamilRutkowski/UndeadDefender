@@ -19,11 +19,13 @@ Fl_PNG_Image Animations:: getFrame(int animatedObjectType, int frame)
 
 int Animations::loadFrames(string name, int numberOfFrames)
 {
-	int fVector=vec.size();
+	int sizeOfVector=vec.size();
+	vector<Fl_PNG_Image> tmpRow;
+	vec.push_back(tmpRow);
 	for (int i = 0; i < numberOfFrames; i++)
 	{
 		string tmp = name + std::to_string(i) + ".png";
-		vec[fVector].push_back(Fl_PNG_Image(tmp.c_str()));
+		vec[sizeOfVector].push_back(Fl_PNG_Image(tmp.c_str()));
 	}
 
 }

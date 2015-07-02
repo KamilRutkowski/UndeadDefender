@@ -32,6 +32,7 @@ void Menu::createMenu(int &gameMode)
 	exit.labelcolor(FL_WHITE);
 	exit.box( FL_UP_BOX );
 	exit.callback(exitGame, this);
+	gameMode = gamemode;
 }
 
 void Menu::playGame(Fl_Widget* widget, void*p)

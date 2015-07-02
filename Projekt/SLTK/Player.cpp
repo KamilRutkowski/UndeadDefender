@@ -1,7 +1,4 @@
 #include "Player.h"
-#include <FL/Fl.H>
-#include <FL/Fl_PNG_Image.H>
-#include <cstdlib>
 
 Player::Player()
 {

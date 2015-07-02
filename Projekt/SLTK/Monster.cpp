@@ -3,8 +3,8 @@
 Monster::Monster(Animations &animations)
 {
 	srand((unsigned int)time(NULL));
-	posit.x=rand() % SPAWN_MAP_WIDHT;
-	posit.y=0;
+	positionX=rand() % SPAWN_MAP_WIDHT;
+	positionY=0;
 	monsterType=(int)(rand() % NUMBER_OF_MONSTERS)+3;
 	animationState=0;
 	numberOfFrames = animations.howManyFrames(monsterType);
@@ -20,14 +20,19 @@ int Monster::getMonsterType()
 	return monsterType;
 }
 
-Position Monster::getMonsterPosition()
+int Monster::getMonsterPositionX()
 {
-	return posit;
+	return positionX;
+}
+
+int Monster::getMonsterPositionY()
+{
+	return positionY;
 }
 
 void Monster::moveMonster()
 {
-	posit.y+=10;
+	positionY+=10;
 }
 
 int Monster::getMonsterFrame()
