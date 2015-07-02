@@ -11,7 +11,7 @@ bool Options::whichGender()
 	return ChooseGender;
 }
 
-void drawOptions()
+void Options::drawOptions()
 {
 	Fl_Window window(350, 400, "Options");
 
@@ -24,20 +24,13 @@ void drawOptions()
 
 	c.menu(choices);
 	c.callback(wyb_cb);
-	c.when(FL_WHEN_RELEASE | FL_WHEN_NOT_CHANGED);
-
-	window.end();
-	window.show();
-
-	return Fl::run();
+	c.when(FL_WHEN_RELEASE | FL_WHEN_NOT_CHANGED);
 }
 
-void wyb_cb(Fl_Widget*, void* v)
+void Options::wyb_cb(Fl_Widget*, void* v)
 {
 	int t = (int)v;
-	if (t == 1) map = new Fl_PNG_Image(MAP1_FILE);
-	else if (t == 2) map = new Fl_PNG_Image(MAP2_FILE);
-	else if (t == 3) map = new Fl_PNG_Image(MAP3_FILE);
+	ChooseMap = t - 1;
 }
 
 Fl_Menu_Item choices[] = {

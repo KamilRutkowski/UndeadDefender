@@ -19,18 +19,19 @@ public:
 	~Monster(void);
 	int getMonsterType();
 	int getMonsterFrame();
-	struct position getMonsterPosition();
+	Position getMonsterPosition();
 	void moveMonster();
 
 private:
 	int numberOfFrames;
 	int monsterType;
-	struct position posit;
+	Position posit;
 	int animationState;
 };
 
-struct position
+class Position
 {
+public:
 	int x;
 	int y;
 };

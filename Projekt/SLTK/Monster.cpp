@@ -5,7 +5,7 @@ Monster::Monster(Animations &animations)
 	srand((unsigned int)time(NULL));
 	posit.x=rand() % SPAWN_MAP_WIDHT;
 	posit.y=0;
-	monsterType=(int)(rand() % NUMBER_OF_MONSTERS)+2;
+	monsterType=(int)(rand() % NUMBER_OF_MONSTERS)+3;
 	animationState=0;
 	numberOfFrames = animations.howManyFrames(monsterType);
 }
@@ -20,7 +20,7 @@ int Monster::getMonsterType()
 	return monsterType;
 }
 
-struct position Monster::getMonsterPosition()
+Position Monster::getMonsterPosition()
 {
 	return posit;
 }

@@ -14,6 +14,7 @@ public:
 	void reset();
 
 private:
+	
 	int HP;
 	int positionX;
 	int animationFrame;

@@ -20,14 +20,18 @@ class DrawGameMap
 public:
 	DrawGameMap(void);
 	~DrawGameMap(void);
-	void drawMap(int map,Player &player,std::list<Monster> &monsters,Animations &animations,Fl_Window &window,int &gameState);
+	void drawMap(int map, Player &player, std::list<Monster> &monsters, Animations &animations, Options &options, int &gameState);
 	void isGameOver(int &gameState);
 private:
 	Fl_Box* HP;
+	Fl_Box* Points;
 	bool isGameOver;
 	int actualTime;
 	int dTime();
 	void actualizeTime();
 	void moveMonsters(std::list<Monster>::iterator start, std::list<Monster>::iterator end);
 	void reset(Player &player, std::list<Monster> &monsters, int &gameState);
+
+
+	int points;
 };
