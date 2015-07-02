@@ -1,7 +1,6 @@
 #include "Options.h"
 
 
-
 int Options::whichMap()
 {
 	return ChooseMap;
