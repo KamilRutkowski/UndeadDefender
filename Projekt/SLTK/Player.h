@@ -12,10 +12,13 @@ public:
 	void lowerHP();
 	int getHP();
 	void reset();
+	int getPoints();
+	void addPoint();
 
 private:
 	int HP;
 	int positionX;
 	int animationFrame;
 	bool attack;
+	int points;
 };
