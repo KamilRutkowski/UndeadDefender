@@ -1,6 +1,6 @@
 #include "Menu.h"
 
-void Menu::createMenu(int &gameMode, Fl_Double_Window &window)
+void Menu::createMenu(int &gameMode)
 {	
 	if (firstPass)
 	{
@@ -29,9 +29,8 @@ void Menu::createMenu(int &gameMode, Fl_Double_Window &window)
 		exit->labelcolor(FL_WHITE);
 		exit->box(FL_UP_BOX);
 		exit->callback(exitGame, this);
+		gamemode = &gameMode;
 	}
-
-	gameMode = gamemode;
 }
 
 void Menu::playGame(Fl_Widget* widget, void*p)
@@ -42,7 +41,11 @@ void Menu::playGame(Fl_Widget* widget, void*p)
 
 void Menu::playGame2(Menu*p)
 {
-	gamemode = 1;
+	*gamemode = 1;
+	logo->hide();
+	start->hide();
+	options->hide();
+	exit->hide();
 }
 
 void Menu::showOptions(Fl_Widget* widget, void*p)
@@ -53,7 +56,11 @@ void Menu::showOptions(Fl_Widget* widget, void*p)
 
 void Menu::showOptions2(Menu*p)
 {
-	gamemode = 2;
+	*gamemode = 2;
+	logo->hide();
+	start->hide();
+	options->hide();
+	exit->hide();
 }
 
 void Menu::exitGame(Fl_Widget* widget, void*p)
@@ -64,5 +71,5 @@ void Menu::exitGame(Fl_Widget* widget, void*p)
 
 void Menu::exitGame2(Menu*p)
 {
-	gamemode = 3;
+	*gamemode = 3;
 }

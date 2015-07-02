@@ -21,11 +21,20 @@ private:
 	void setGender(bool gender);
 	static void exitToMenu(Fl_Widget* widget, void* p);
 	void exitToMenu2();
-	int gamemode=2;
+	int *gamemode;
+	bool firstPass = true;
+
+	Fl_Box *logo;
+	Fl_Box *gender;
+	Fl_Round_Button *fbutton;
+	Fl_Round_Button *mbutton;
+	Fl_Choice *maps;
+	Fl_Button *exit;
+	Fl_Menu_Item choices[4];
 
 public:
 	int whichMap();
 	bool whichGender();
-	int drawOptions(int &gameMode, Fl_Double_Window &window);
+	void drawOptions(int &gameMode);
 };
 

@@ -11,7 +11,7 @@
 class Menu
 {
 public:
-	void createMenu(int &gameMode, Fl_Double_Window &window);
+	void createMenu(int &gameMode);
 	static void playGame(Fl_Widget* widget, void*p);
 	static void showOptions(Fl_Widget* widget, void* p);
 	static void exitGame(Fl_Widget* widget, void* p);
@@ -20,7 +20,7 @@ public:
 	void showOptions2(Menu*);
 	void exitGame2(Menu*);
 private:
-	int gamemode;
+	int* gamemode;
 	bool firstPass=true;
 	Fl_Button* start;
 	Fl_Button* options;
