@@ -11,11 +11,7 @@ bool Options::whichGender()
 	return ChooseGender;
 }
 
-<<<<<<< HEAD
-void Options::drawOptions()
-=======
 void Options ::drawOptions()
->>>>>>> 71c2b4d025f1ff1cb58bbdbff0c684d98bcd5d48
 {
 	Fl_Window options(400, 500, "Options");
 	Fl_Color ooze_green = fl_rgb_color(255, 105, 105);
@@ -31,11 +27,9 @@ void Options ::drawOptions()
 	gender.labelsize(20);
 	gender.labelfont(FL_BOLD);
 
-<<<<<<< HEAD
 	c.menu(choices);
 	c.callback(wyb_cb);
 	c.when(FL_WHEN_RELEASE | FL_WHEN_NOT_CHANGED);
-=======
 
 	Fl_Round_Button *fbutton = new Fl_Round_Button(200, 120, 80, 50, "Female");
 	Fl_Round_Button *mbutton = new Fl_Round_Button(280, 120, 80, 50, "Male");
@@ -56,7 +50,6 @@ void Options ::drawOptions()
 	options.end();
 	options.show();
 	return Fl::run();
->>>>>>> 71c2b4d025f1ff1cb58bbdbff0c684d98bcd5d48
 }
 
 void Options::wyb_cb(Fl_Widget*, void* v)
