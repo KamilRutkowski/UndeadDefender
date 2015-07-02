@@ -15,7 +15,6 @@ int Options::drawOptions(int &gameMode, Fl_Double_Window &window)
 {
 	Fl_Color ooze_green = fl_rgb_color(255, 105, 105);
 	window.color(ooze_green);
-
 	Fl_Box logo(150, 50, 50, 50, "Options");
 	logo.labelsize(50);
 	logo.labelfont(FL_BOLD);
@@ -102,10 +101,10 @@ void Options::setGender(bool gender)
 void Options::exitToMenu(Fl_Widget* widget, void*p)
 {
 	Options* T = (Options*)p;
-	T->exitToMenu2((Options*)p);
+	T->exitToMenu2();
 }
 
-void Options::exitToMenu2(Options*)
+void Options::exitToMenu2()
 {
 	gamemode = 0;
 }

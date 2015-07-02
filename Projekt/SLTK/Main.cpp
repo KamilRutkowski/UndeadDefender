@@ -11,7 +11,7 @@ int main()
 	DrawGameMap gameMap;
 	Menu menu;
 	bool firstPass = true;
-	int gameState = 2;
+	int gameState = 0;
 	Fl_Double_Window window(750, 800, "UNDEAD DEFENDER");
 	//Loading frames
 	animations.loadFrames("../img/map/bg", 3);
@@ -25,7 +25,7 @@ int main()
 	//Main program loop
 	while (1)
 	{
-		window.begin();
+		//window.begin();
 		switch (gameState)
 		{
 		case 0:
@@ -38,6 +38,9 @@ int main()
 			options.drawOptions(gameState,window);
 			break;
 		}
+		window.end();
+		window.show();
 		if (gameState == 3) { return 0; }
+		Fl::run();
 	}
 }

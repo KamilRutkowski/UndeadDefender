@@ -20,7 +20,7 @@ private:
 	static void setGenderFemale(Fl_Widget*, void* v);
 	void setGender(bool gender);
 	static void exitToMenu(Fl_Widget* widget, void* p);
-	void exitToMenu2(Options*);
+	void exitToMenu2();
 	int gamemode=2;
 
 public:
