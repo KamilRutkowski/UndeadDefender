@@ -25,6 +25,7 @@ public:
 private:
 	bool GameOver;
 	int actualTime;
+	static void gameCallback(Fl_Widget* widget, void*p);
 	bool startGame=false;
 	std::list<Monster> *mon;
 	Player *play;

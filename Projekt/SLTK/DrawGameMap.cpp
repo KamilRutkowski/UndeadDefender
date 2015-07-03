@@ -7,11 +7,12 @@ DrawGameMap::DrawGameMap( Player &player, std::list<Monster> &monsters, Animatio
 	gameArea = new Fl_Box(0, 0, 750, 800);
 	HP = new Fl_Box(375, 700, 100, 25);
 	Points = new Fl_Box(25, 700, 100, 25);
-	gameArea->box(FL_UP_BOX);
 	HP->labelcolor(FL_BLACK);
 	HP->label((std::to_string(player.getHP()) + "/100").c_str());
 	Points->labelcolor(FL_BLACK);
 	Points->label((std::string("Points: ") + std::to_string(player.getPoints())).c_str());
+	gameArea->callback(gameCallback, this);
+
 	mon=&monsters;
 	play=&player;
 	anim=&animations;
@@ -28,7 +29,8 @@ DrawGameMap::~DrawGameMap()
 
 void DrawGameMap::drawMap()
 {
-
+	gameArea->image(anim->getFrame(0, opt->whichMap()));
+	gameArea->redraw_label();
 	/*
 	//Setting actual time if it was NULL
 	if (!actualTime)
@@ -151,4 +153,10 @@ void DrawGameMap::hideAll()
 	gameArea->hide();
 	HP->hide();
 	Points->hide();
+}
+
+void DrawGameMap::gameCallback(Fl_Widget* widget, void*p)
+{
+	DrawGameMap *Box = (DrawGameMap*)p;
+	Box->drawMap();
 }
