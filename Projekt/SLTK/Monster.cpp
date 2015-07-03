@@ -32,6 +32,6 @@ void Monster::moveMonster()
 
 int Monster::getMonsterFrame()
 {
-	animationState = animationState % ANIMATION_TIME;
-	return (int)(animationState++/(ANIMATION_TIME/numberOfFrames));
+	animationState = (animationState+1) % (ANIMATION_TIME*numberOfFrames);
+	return (int)(animationState++/ANIMATION_TIME);
 }

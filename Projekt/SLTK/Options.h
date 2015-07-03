@@ -1,3 +1,4 @@
+#pragma once
 #include <FL/Fl.H>
 #include <FL/Fl_Draw.H>
 #include <FL/Fl_Box.H>
@@ -5,13 +6,15 @@
 #include <FL/Fl_Round_Button.H>
 #include <FL/Fl_Choice.H>
 #include <FL/Fl_Double_Window.H>
+#include "Menu.h"
 
+class Menu;
 
 class Options
 {
 private:
-	int ChooseMap;
-	bool ChooseGender;
+	int ChooseMap=0;
+	bool ChooseGender=false;
 	static void wyb_cb0(Fl_Widget*, void* v);
 	static void wyb_cb1(Fl_Widget*, void* v);
 	static void wyb_cb2(Fl_Widget*, void* v);
@@ -21,7 +24,7 @@ private:
 	void setGender(bool gender);
 	static void exitToMenu(Fl_Widget* widget, void* p);
 	void exitToMenu2();
-	int *gamemode;
+	Menu *men;
 	bool firstPass = true;
 
 	Fl_Box *logo;
@@ -33,8 +36,10 @@ private:
 	Fl_Menu_Item choices[4];
 
 public:
-	int whichMap();
-	bool whichGender();
-	void drawOptions(int &gameMode);
+	int& whichMap();
+	bool& whichGender();
+	void drawOptions(Menu &menu);
+	void showAll();
+	void hideAll();
 };
 

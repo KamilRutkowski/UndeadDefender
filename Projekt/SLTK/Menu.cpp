@@ -1,6 +1,6 @@
 #include "Menu.h"
 
-void Menu::createMenu(int &gameMode)
+void Menu::createMenu(Options &option,DrawGameMap &gameMap)
 {	
 	if (firstPass)
 	{
@@ -29,7 +29,8 @@ void Menu::createMenu(int &gameMode)
 		exit->labelcolor(FL_WHITE);
 		exit->box(FL_UP_BOX);
 		exit->callback(exitGame, this);
-		gamemode = &gameMode;
+		opt = &option;
+		game = &gameMap;
 	}
 }
 
@@ -41,11 +42,9 @@ void Menu::playGame(Fl_Widget* widget, void*p)
 
 void Menu::playGame2(Menu*p)
 {
-	*gamemode = 1;
-	logo->hide();
-	start->hide();
-	options->hide();
-	exit->hide();
+	hideAll();
+	game->showAll();
+	game->drawMap();
 }
 
 void Menu::showOptions(Fl_Widget* widget, void*p)
@@ -56,20 +55,33 @@ void Menu::showOptions(Fl_Widget* widget, void*p)
 
 void Menu::showOptions2(Menu*p)
 {
-	*gamemode = 2;
-	logo->hide();
-	start->hide();
-	options->hide();
-	exit->hide();
+	hideAll();
+	opt->showAll();
 }
 
 void Menu::exitGame(Fl_Widget* widget, void*p)
 {
 	Menu* T=(Menu*)p;
-	T->exitGame2((Menu*)p);
+	T->exitGame2();
 }
 
-void Menu::exitGame2(Menu*p)
+void Menu::exitGame2()
 {
-	*gamemode = 3;
+	logo->parent()->hide();
+}
+
+void  Menu::showAll()
+{
+	logo->show();
+	start->show();
+	options->show();
+	exit->show();
+}
+
+void  Menu::hideAll()
+{
+	logo->hide();
+	start->hide();
+	options->hide();
+	exit->hide();
 }

@@ -5,14 +5,15 @@ Player::Player()
 	HP = 100;
 	positionX = 0;
 	animationFrame = 0;
+	attack = false;
 }
 
-int Player::getPosition()
+int& Player::getPosition()
 {
 	return positionX;
 }
 
-int Player::getAnimationFrame()
+int& Player::getAnimationFrame()
 {
 	return animationFrame; 
 }
@@ -22,7 +23,7 @@ void Player::setPosition(int pos)
 	positionX = pos;
 }
 
-bool Player::isAttack()
+bool& Player::isAttack()
 {
 	return attack;
 }
@@ -32,7 +33,7 @@ void Player::setAttack(bool atc)
 	attack=atc;
 }
 
-int Player::getHP()
+int& Player::getHP()
 {
 	return HP;
 }
@@ -51,7 +52,7 @@ void Player::reset()
 	points = 0;
 }
 
-int Player::getPoints()
+int& Player::getPoints()
 {
 	return points;
 }

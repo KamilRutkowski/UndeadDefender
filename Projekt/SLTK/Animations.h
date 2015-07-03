@@ -1,4 +1,6 @@
+#pragma once
 #include <FL/Fl_PNG_Image.H>
+#include <FL/Fl_Shared_Image.H>
 #include <iostream>
 #include <vector>
 #include <string>

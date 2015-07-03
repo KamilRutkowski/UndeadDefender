@@ -4,15 +4,15 @@ class Player
 {
 public:
 	Player(void);
-	int getPosition();
-	int getAnimationFrame();
+	int& getPosition();
+	int& getAnimationFrame();
 	void setPosition(int nPositionX);
-	bool isAttack();
+	bool& isAttack();
 	void setAttack(bool atc);
 	void lowerHP();
-	int getHP();
+	int& getHP();
 	void reset();
-	int getPoints();
+	int& getPoints();
 	void addPoint();
 
 private:

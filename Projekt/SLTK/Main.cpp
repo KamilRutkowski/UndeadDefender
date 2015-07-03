@@ -8,11 +8,10 @@ int main()
 	std::list<Monster> monsters;
 	Options options;
 	Animations animations;
-	DrawGameMap gameMap;
+	DrawGameMap gameMap(player, monsters, animations, options);
 	Menu menu;
-	bool firstPass = true;
-	int gameState = 2;
 	Fl_Double_Window window(750, 800, "UNDEAD DEFENDER");
+	fl_register_images();
 	//Loading frames
 	animations.loadFrames("../img/map/bg", 3);
 	animations.loadFrames("../img/male_player/male", 2);
@@ -23,24 +22,13 @@ int main()
 	animations.loadFrames("../img/toxic_blob/toxic_blob", 2); 
 	animations.loadFrames("../img/zombie/zombie", 4);
 	//Main program loop
-	while (1)
-	{
-		window.begin();
-		switch (gameState)
-		{
-		case 0:
-			menu.createMenu(gameState);
-			break;
-		case 1:
-			gameMap.drawMap(options.whichMap(), player, monsters, animations, options, gameState, window);
-			break;
-		case 2:
-			options.drawOptions(gameState);
-			break;
-		}
-		window.end();
-		window.show();
-		if (gameState == 3) { return 0; }
-		Fl::run();
-	}
+	window.begin();
+	menu.createMenu(options,gameMap);
+	options.drawOptions(menu);
+	options.hideAll();
+	window.end();
+	window.show();
+	
+	return Fl::run();
 }
+

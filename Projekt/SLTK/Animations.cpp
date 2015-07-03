@@ -24,7 +24,7 @@ void Animations::loadFrames(std::string name, int numberOfFrames)
 	vec.push_back(tmpRow);
 	for (int i = 0; i < numberOfFrames; i++)
 	{
-		std::string tmp = name + std::to_string(i) + ".png";
+		std::string tmp = name + std::to_string(i) +".png";
 		vec[sizeOfVector].push_back(new Fl_PNG_Image(tmp.c_str()));
 	}
 }

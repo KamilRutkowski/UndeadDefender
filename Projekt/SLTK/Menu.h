@@ -1,3 +1,5 @@
+#pragma once
+
 #include <FL/Fl.H>
 #include <FL/Fl_Draw.H>
 #include <FL/Fl_Box.H>
@@ -7,20 +9,28 @@
 #include <FL/Fl_Double_Window.H>
 #include <FL/Fl_Window.H>
 #include <string>
+#include "Options.h"
+#include "DrawGameMap.h"
+
+class Options;
+class DrawGameMap;
 
 class Menu
 {
 public:
-	void createMenu(int &gameMode);
+	void createMenu(Options &option, DrawGameMap &gameMap);
 	static void playGame(Fl_Widget* widget, void*p);
 	static void showOptions(Fl_Widget* widget, void* p);
 	static void exitGame(Fl_Widget* widget, void* p);
 	
 	void playGame2(Menu*);
 	void showOptions2(Menu*);
-	void exitGame2(Menu*);
+	void exitGame2();
+	void showAll();
+	void hideAll();
 private:
-	int* gamemode;
+	Options* opt;
+	DrawGameMap* game;
 	bool firstPass=true;
 	Fl_Button* start;
 	Fl_Button* options;
