@@ -23,9 +23,6 @@ public:
 	static void showOptions(Fl_Widget* widget, void* p);
 	static void exitGame(Fl_Widget* widget, void* p);
 	
-	void playGame2(Menu*);
-	void showOptions2(Menu*);
-	void exitGame2();
 	void showAll();
 	void hideAll();
 private:

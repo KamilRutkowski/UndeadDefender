@@ -37,37 +37,23 @@ void Menu::createMenu(Options &option,DrawGameMap &gameMap)
 void Menu::playGame(Fl_Widget* widget, void*p)
 {
 	Menu* T=(Menu*)p;
-	T->playGame2((Menu*)p);
+	T->hideAll();
+	T->game->showAll();
+	T->game->drawMap();
 }
 
-void Menu::playGame2(Menu*p)
-{
-	hideAll();
-	game->showAll();
-	game->drawMap();
-}
 
 void Menu::showOptions(Fl_Widget* widget, void*p)
 {
 	Menu* T=(Menu*)p;
-	T->showOptions2((Menu*)p);
-}
-
-void Menu::showOptions2(Menu*p)
-{
-	hideAll();
-	opt->showAll();
+	T->hideAll();
+	T->opt->showAll();
 }
 
 void Menu::exitGame(Fl_Widget* widget, void*p)
 {
 	Menu* T=(Menu*)p;
-	T->exitGame2();
-}
-
-void Menu::exitGame2()
-{
-	logo->parent()->hide();
+	T->logo->parent()->hide();
 }
 
 void  Menu::showAll()

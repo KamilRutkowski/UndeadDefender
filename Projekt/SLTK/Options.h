@@ -21,9 +21,7 @@ private:
 	void setMap(int map);
 	static void setGenderMale(Fl_Widget*, void* v);
 	static void setGenderFemale(Fl_Widget*, void* v);
-	void setGender(bool gender);
 	static void exitToMenu(Fl_Widget* widget, void* p);
-	void exitToMenu2();
 	Menu *men;
 	bool firstPass = true;
 

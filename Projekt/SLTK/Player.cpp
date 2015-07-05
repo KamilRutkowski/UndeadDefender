@@ -5,6 +5,7 @@ Player::Player()
 	HP = 100;
 	positionX = 0;
 	animationFrame = 0;
+	points = 0;
 	attack = false;
 }
 

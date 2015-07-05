@@ -78,30 +78,20 @@ void Options::setMap(int map)
 void Options::setGenderMale(Fl_Widget*, void* v)
 {
 	Options* T = (Options*)v;
-	T->setGender(false);
+	T->ChooseGender = false;
 }
 
 void Options::setGenderFemale(Fl_Widget*, void* v)
 {
 	Options* T = (Options*)v;
-	T->setGender(true);
-}
-
-void Options::setGender(bool gender)
-{
-	ChooseGender = gender;
+	T->ChooseGender = true;
 }
 
 void Options::exitToMenu(Fl_Widget* widget, void*p)
 {
 	Options* T = (Options*)p;
-	T->exitToMenu2();
-}
-
-void Options::exitToMenu2()
-{
-	hideAll();
-	men->showAll();
+	T->hideAll();
+	T->men->showAll();
 }
 
 void Options::showAll()

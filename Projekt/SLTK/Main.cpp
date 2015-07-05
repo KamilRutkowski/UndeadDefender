@@ -8,10 +8,11 @@ int main()
 	std::list<Monster> monsters;
 	Options options;
 	Animations animations;
-	DrawGameMap gameMap(player, monsters, animations, options);
+	
 	Menu menu;
 	Fl_Double_Window window(750, 800, "UNDEAD DEFENDER");
 	fl_register_images();
+	DrawGameMap gameMap(menu, player, monsters, animations, options, window);
 	//Loading frames
 	animations.loadFrames("../img/map/bg", 3);
 	animations.loadFrames("../img/male_player/male", 2);
@@ -27,8 +28,8 @@ int main()
 	options.drawOptions(menu);
 	options.hideAll();
 	window.end();
+	Fl::visual(FL_DOUBLE | FL_INDEX);
 	window.show();
-	
 	return Fl::run();
 }
 

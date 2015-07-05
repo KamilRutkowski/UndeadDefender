@@ -2,7 +2,6 @@
 
 Monster::Monster(Animations &animations)
 {
-	srand((unsigned int)time(NULL));
 	positionX=rand() % SPAWN_MAP_WIDHT;
 	positionY=0;
 	monsterType=(int)(rand() % NUMBER_OF_MONSTERS)+3;
@@ -27,7 +26,7 @@ int Monster::getMonsterPositionY()
 
 void Monster::moveMonster()
 {
-	positionY+=10;
+	positionY+=7;
 }
 
 int Monster::getMonsterFrame()
